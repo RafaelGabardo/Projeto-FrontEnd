@@ -1,3 +1,76 @@
+<?php
+    $dbtype = 'mysql';
+    $dbname = 'projeto-frontend';
+    $user = 'root';
+    $servername = 'localhost';
+    $password = '';
+    $options = [
+        PDO::ATTR_PERSISTENT => TRUE,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+    ];
+
+    $pdoConnection = $dbtype . ':host=' . $servername . ';dbname=' . $dbname;
+
+    if(isset($_POST['submit'])) {
+        try {
+            $conn = new PDO($pdoConnection, $user, $password, $options);
+        } catch(PDOException $e) {
+            echo 'Conexão falhou!' . $e->getMessage();
+        }
+
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $address = $_POST['address'];
+        $phonenumber = $_POST['phonenumber'];
+        $pass1 = $_POST['pass1'];
+        $pass2 = $_POST['pass2'];
+        $username = $_POST['username'];
+
+        if(!preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,36}$/', $pass1) && $pass1 !== $pass2) {
+            die('
+                Ambas as senhas devem ser iguais;
+                A senha deve conter pelo menos 8 caracteres e no máximo 36;
+                A senha deve conter pelo menos uma letra maiúscula e uma letra minúscula;
+                A senha deve conter pelo menos um número;
+                A senha deve conter pelo menos um símbolo.
+            ');
+        }
+
+        $sql = "
+            INSERT INTO
+                `profiles`(`name`,`email`,`address`,`phonenumber`,`password`,`username`)
+            VALUES
+                ('$name','$email','$address','$phonenumber','$pass1','$username')
+        ";
+
+        $verify = "
+            SELECT
+                (`email`,`username`)
+            FROM
+                `profiles`
+            WHERE
+                `email`='$email' AND `username`='$username'
+        ";
+
+        $verifyQuery = $conn->prepare($verify);
+
+        $executeVerify = $conn->query($verifyQuery);
+
+        if($executeVerify) {
+            die('Insira um email ou nome de usuário diferente.');
+        }
+
+        $query = $conn->prepare($sql);
+
+        $execute = $conn->query($query);
+
+        if($execute) {
+            echo('Dados salvos com sucesso!');
+        } else {
+            die('Erro ao salvar.');
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -54,10 +127,10 @@
             </div>
             <div class="div-main">
                 <div class="div-card-main">
-                    <div class="div-main title">
-                        <h1>Faça aqui seu cadastro</h1>
+                    <div class="title">
+                        <h1>Faça aqui seu cadastro:</h1>
                     </div>
-                    <div class="div-main form">
+                    <div class="form">
                         <form action="" method="POST" class="form-main">
                             <label class="label" for="name">Insira seu nome completo:</label><br>
                             <input class="input" type="text" id="name" name="name"><br><br>
@@ -66,7 +139,7 @@
                             <label class="label" for="address">Insira seu endereço:</label><br>
                             <input class="input" type="address" id="address" name="address"><br><br>
                             <label class="label" for="number">Insira seu número de telefone:</label><br>
-                            <input class="input" type="tel" id="number" name="phonenumber"><br>
+                            <input class="input" type="tel" id="number" name="phonenumber"><br><br>
                             <label class="label" for="pass1">Insira sua senha:</label><br>
                             <input class="input" type="password" id="pass1" name="pass1"><br><br>
                             <label class="label" for="pass2">Confirme sua senha:</label><br>
