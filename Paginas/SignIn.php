@@ -131,7 +131,7 @@
                         <h1>Faça aqui seu cadastro:</h1>
                     </div>
                     <div class="form">
-                        <form action="" method="POST" class="form-main">
+                        <form action="" method="POST" class="form-main" onsubmit="passwordValidate(pass1, pass2, validate)">
                             <label class="label" for="name">Insira seu nome completo:</label><br>
                             <input class="input" type="text" id="name" name="name"><br><br>
                             <label class="label" for="email">Insira seu e-mail:</label><br>
@@ -156,5 +156,17 @@
             </div>
         </section>
     </main>
+    <script>
+        let pass1 = document.getElementById('pass1');
+        let pass2 = document.getElementById('pass2');
+
+        let validate = pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,36}$/, pass1)
+
+        function passwordValidate(pass1, pass2, validate) {
+            if(!validate && pass1 !== pass2) {
+                document.write('Ambas as senhas devem ser iguais; A senha deve conter pelo menos 8 caracteres e no máximo 36; A senha deve conter pelo menos uma letra maiúscula e uma letra minúscula; A senha deve conter pelo menos um número; A senha deve conter pelo menos um símbolo.');
+            }
+        }
+    </script>
 </body>
 </html>
