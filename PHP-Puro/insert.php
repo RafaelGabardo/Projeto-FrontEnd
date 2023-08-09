@@ -1,23 +1,7 @@
 <?php
-    $dbtype = 'mysql';
-    $dbname = 'projeto-frontend';
-    $user = 'root';
-    $servername = 'localhost';
-    $password = '';
-    $options = [
-        PDO::ATTR_PERSISTENT => TRUE,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
-    ];
-
-    $pdoConnection = $dbtype . ':host=' . $servername . ';dbname=' . $dbname;
+    include_once('connect.php');
 
     if(isset($_POST['submit'])) {
-        try {
-            $conn = new PDO($pdoConnection, $user, $password, $options);
-        } catch(PDOException $e) {
-            echo 'Conexão falhou!' . $e->getMessage();
-        }
-
         $name = $_POST['name'];
         $email = $_POST['email'];
         $address = $_POST['address'];
