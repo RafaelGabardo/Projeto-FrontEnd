@@ -27,17 +27,17 @@
             <div class="div-nav">
                 <div class="div-list">
                     <ul class="nav-list">
-                        <a href="index.php">   
+                        <a class="a-list" href="index.php">   
                             <div class="div-card">
                                 <li class="list-element">Início</li>
                             </div>
                         </a>
-                        <a href="SignIn.php">
+                        <a class="a-list" href="SignIn.php">
                             <div class="div-card">
                                 <li class="list-element">Sign in</li>
                             </div>
                         </a>
-                        <a href="LogIn.php">
+                        <a class="a-list" href="LogIn.php">
                             <div class="div-card">
                                 <li class="list-element">Log in</li>
                             </div>
@@ -47,5 +47,30 @@
             </div>
         </section>
     </nav>
+    <main class="main">
+        <section class="section section-main-menu">
+            <div class="menu" id="menu">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+                <div class="menu-content">
+                    <a class="a" href="#">Perfil</a>
+                    <a class="a" href="#">Amigos</a>
+                    <a class="a" href="#">Opções</a>
+                    <a class="a" href="#">Sair</a>
+                </div>
+            </div>
+            <button class="menu-button" id="menu-button" onclick="openMenu()">
+                <i>&#9776;</i>
+            </button>
+        </section>
+        <section class="section section-main">
+
+        </section>
+    </main>
+    <footer class="footer">
+        <section class="section section-footer">
+            <p>Criado por Rafael Giroldo Gabardo</p>
+        </section>
+    </footer>
+    <script src="../JS/menu.js"></script>
 </body>
 </html>
