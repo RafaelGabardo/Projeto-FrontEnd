@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in</title>
+    <title>Index</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -11,13 +11,13 @@
         <section class="section section-nav">
             <div class="div-nav">
                 <form action="" method="GET" class="form-nav">
-                    <select name="colorblind" id="colorblind" class="select">
-                        <option value="Nenhum" onselect="noneOnClick()" id="none">Nenhum</option>
-                        <option value="Deuteranopia" onselect="deuteranopiaOnClick()" id="deuteranopia">Deuteranopia</option>
-                        <option value="Protanopia" onselect="protanopiaOnClick()" id="protanopia">Protanopia</option>
-                        <option value="Tritanopia" onselect="tritanopiaOnClick()" id="tritanopia">Tritanopia</option>
-                        <option value="Acromatomalia" onselect="acromatomaliaOnClick()" id="acromatomalia">Acromatomalia</option>
-                        <option value="Acromatopsia" onclick="acromatopsiaOnClick()" id="acromatopsia">Acromatopsia</option>
+                    <select name="colorblind" id="colorblind" class="select" onchange="onChange()">
+                        <option value="Nenhum">Nenhum</option>
+                        <option value="Deuteranopia">Deuteranopia</option>
+                        <option value="Protanopia">Protanopia</option>
+                        <option value="Tritanopia">Tritanopia</option>
+                        <option value="Acromatomalia">Acromatomalia</option>
+                        <option value="Acromatopsia">Acromatopsia</option>
                     </select>
                 </form>
             </div>
@@ -78,22 +78,6 @@
         </section>
     </footer>
     <script src="../JS/menu.js"></script>
-    <script>
-        function noneOnClick() {
-            document.getElementsById('signin').style.backgroundColor = 'mediumblue';
-            document.getElementsById('index').style.backgroundColor = 'mediumblue';
-            document.getElementsById('login').style.backgroundColor = 'mediumblue';
-            document.getElementById('a-index').style.color = 'blue';
-            document.getElementById('a-login').style.color = 'blue';
-            document.getElementById('a-signin').style.color = 'blue';
-        }
-
-        function acromatopsiaOnClick() {
-            document.getElementById('a-index').style.color = 'black';
-            document.getElementById('a-login').style.color = 'black';
-            document.getElementById('a-signin').style.color = 'black';
-            document.getElementById('main').value.style.backgroundColor = 'lightgrey';
-        }
-    </script>
+    <script src="../JS/colorblind.js"></script>
 </body>
 </html>
